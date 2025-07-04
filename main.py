@@ -303,17 +303,11 @@ async def which_creature(update: Update, context: ContextTypes.DEFAULT_TYPE):
     creature = random.choice(creatures)
     await update.message.reply_text(f"🐾 Сьогодні ти — {creature}.")
 
-# /test
-async def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_sticker("CAACAgUAAxkBAAEBXGyBgVDFzYm_V0YtrV5RvU0DcIgi5wACdAIAAnEQ8VF2zU5CuG96XyME")
-    
-async def sticker_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    file_id = update.message.sticker.file_id
-    await update.message.reply_text(f"Sticker file_id: {file_id}")
-
+# /slot
 def dice_slot_filter(update):
     return update.message.dice is not None and update.message.dice.emoji == "🎰"
 dice_filter = filters.MessageFilter(dice_slot_filter)
+
 # logic
 app = ApplicationBuilder().token(BOT_TOKEN).build()
 app.add_handler(CommandHandler("anton_percent", anton_percent))
